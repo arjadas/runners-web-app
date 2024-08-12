@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class RunRepository {
@@ -17,11 +18,12 @@ public class RunRepository {
         return runs;
     }
 
-    Run findById(Integer id) {
+    /* Optional lets a method return a null value */
+
+    Optional<Run> findById(Integer id) {
         return runs.stream()
                 .filter(run -> run.id().equals(id))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     /*post construct does some initialisations after the dependency injection is done*/
