@@ -8,7 +8,7 @@ import java.util.List;
 public interface RunRepository extends ListCrudRepository<Run, Integer> {
 
     @Query
-    List<Run> findAllByLocation(String location);
+    List<Run> findByLocation(String location);
 
     // we could've added custom query here but spring data already has it for us
     // @Query("SELECT * FROM run WHERE location = :location")

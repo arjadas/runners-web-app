@@ -48,7 +48,7 @@ public class RunController {
 
     @GetMapping("/location/{location}")
     List<Run> findAllByLocation(@PathVariable String location) {
-        return runRepository.findAllByLocation(location);
+        return runRepository.findByLocation(location);
     }
 
     // post (create)
@@ -57,7 +57,8 @@ public class RunController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@Valid @RequestBody Run run) {
-        runRepository.save(run);
+        runRepository.save(run);  // spring data jdbc will automatically insert the row
+        // runRepository.create(run);  // if we were using jdbcClient
     }
 
     // put (edit)
@@ -65,7 +66,8 @@ public class RunController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
-        runRepository.save(run);
+        runRepository.save(run);  // spring data jdbc will automatically update the row
+        // runRepository.update(run, id);  // if we were using jdbcClient
     }
 
     // delete
@@ -73,7 +75,8 @@ public class RunController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id) {
-        runRepository.delete(runRepository.findById(id).get());
+        runRepository.delete(runRepository.findById(id).get());  // spring data jdbc deletes the row by run object
+        // runRepository.delete(id);  // if we were using jdbcClient
     }
 
 
