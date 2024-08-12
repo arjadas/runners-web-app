@@ -24,12 +24,12 @@ public class Application {
 
 	/*Command Line Runner runs after the application started and the application context has been created*/
 
-	@Bean
+	/*@Bean
 	CommandLineRunner runner(RunRepository runRepository) {
 		return args -> {
 			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
 			runRepository.create(run);
 		};
-	}
+	}*/
 
 }
