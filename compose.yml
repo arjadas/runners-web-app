@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:latest' # may specify a version when working in a team
+    environment:
+      - 'POSTGRES_DB=runners'
+      - 'POSTGRES_PASSWORD=admin'
+      - 'POSTGRES_USER=admin'
+    ports:
+      - '5432:5432' # on container port 5432, map to host port 5432
