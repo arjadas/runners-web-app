@@ -2,6 +2,8 @@ package com.example.app.run;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +12,7 @@ import java.time.LocalDateTime;
 */
 
 public record Run(
+        @Id
         Integer id,
         @NotEmpty // validation annotation
         String title,
@@ -17,7 +20,9 @@ public record Run(
         LocalDateTime completedOn,
         @Positive // validation annotation
         Integer miles,
-        Location location
+        Location location,
+        @Version
+        Integer version  // specific to spring data jdbc to track whether this is new row or existing row
 ) {
     public Run {
         if (completedOn.isBefore(startedOn)) {

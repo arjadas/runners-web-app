@@ -3,7 +3,6 @@ package com.example.app.run;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,13 +46,18 @@ public class RunController {
         return run.get();
     }
 
+    @GetMapping("/location/{location}")
+    List<Run> findAllByLocation(@PathVariable String location) {
+        return runRepository.findAllByLocation(location);
+    }
+
     // post (create)
     // the run here would be a request Body from REST API in JSON format, so we let spring know about it by annotation
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@Valid @RequestBody Run run) {
-        runRepository.create(run);
+        runRepository.save(run);
     }
 
     // put (edit)
@@ -61,7 +65,7 @@ public class RunController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
-        runRepository.update(run, id);
+        runRepository.save(run);
     }
 
     // delete
@@ -69,7 +73,7 @@ public class RunController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id) {
-        runRepository.delete(id);
+        runRepository.delete(runRepository.findById(id).get());
     }
 
 
