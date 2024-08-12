@@ -17,6 +17,13 @@ public class RunRepository {
         return runs;
     }
 
+    Run findById(Integer id) {
+        return runs.stream()
+                .filter(run -> run.id().equals(id))
+                .findFirst()
+                .get();
+    }
+
     /*post construct does some initialisations after the dependency injection is done*/
 
     @PostConstruct
