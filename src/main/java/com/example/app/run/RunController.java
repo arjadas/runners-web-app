@@ -20,9 +20,11 @@ public class RunController {
 
     private final RunRepository runRepository;
 
-    /* instead of doing this.runRepository = new runRepository, we included runRepository in the argument because we
-    * want to use the already created object of runRepository. we don't want to create a new object of runRepository
+    /* Instead of doing (this.runRepository = new runRepository), we included runRepository in the argument because we
+    * want to use the already created object of runRepository. We don't want to create a new object of runRepository
     * every time it is called. This is called Dependency Injection.
+    * All of the CRUD operations are happening in-memory when not connected to database. So, if the server is closed,
+    * any new added runs will be lost.
     * */
 
     public RunController(RunRepository runRepository) {
